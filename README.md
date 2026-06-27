@@ -50,48 +50,48 @@ AI provides:
 
 interior-ai/
 
-├── app.py
-├── requirements.txt
-├── README.md
+- ├── app.py
+- ├── requirements.txt
+- ├── README.md
 
-├── templates/
-│ └── index.html
+- ├── templates/
+- └── index.html
 
-└── static/
-├── css/
-│ └── style.css
-├── js/
-│ └── app.js
-└── uploads/
+- └── static/
+- ├── css/
+- │ └── style.css
+- ├── js/
+- │ └── app.js
+- └── uploads/
 
 ## Create Virtual Environment
-python -m venv venv
-venv\Scripts\activate
+- python -m venv venv
+- venv\Scripts\activate
 
 ## Install Dependencies
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 ## Run Application
-python app.py
+- python app.py
 ## Open:
-http://localhost:5000
+- http://localhost:5000
 
 
 ## Technologies Used
-Python
-Flask
-HTML
-CSS
-JavaScript
-Pollinations AI
+- Python
+- Flask
+- HTML
+- CSS
+- JavaScript
+- Pollinations AI
 
 ## Future Improvements 🔥
-Kitchen interior design
-Living room design
-Dining room design
-Better image consistency
-3D bedroom visualization
-More realistic furniture placement
+- Kitchen interior design
+- Living room design
+- Dining room design
+- Better image consistency
+- 3D bedroom visualization
+- More realistic furniture placement
 
 ## Author
 
