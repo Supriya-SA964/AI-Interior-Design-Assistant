@@ -1,103 +1,100 @@
-# RoomAI — AI Interior Design Assistant
+# RoomAI — AI Interior Design Assistant 🛏️✨
 
-A production-quality Flask web application that uses Claude AI vision to analyse room photos and deliver complete interior design recommendations.
+An AI-powered bedroom interior design web application that transforms empty bedroom images into modern interior designs.
+
+Users can upload an empty bedroom image and generate AI-based bedroom designs with furniture, wall colors, lighting, and decoration suggestions.
+
+## Features 🚀
+
+### 🛏️ AI Bedroom Design
+- Upload empty bedroom image
+- Generate AI-designed bedroom preview
+- Transform empty room into a furnished bedroom
+
+### 🎨 Interior Suggestions
+AI provides:
+- Bed design ideas
+- Wardrobe suggestions
+- Side table placement
+- Lamp and lighting ideas
+- Curtain suggestions
+- Wall paint colors
+- Bedroom decoration concepts
+
+### 💰 Budget Options
+
+**Low Budget**
+- Simple furniture
+- Affordable materials
+- Minimal decoration
+
+**Medium Budget**
+- Modern bedroom style
+- Better furniture
+- Stylish interior design
+
+**Premium Budget**
+- Luxury bedroom design
+- Premium furniture
+- High-end decoration
+
+### 📊 Bedroom Analysis
+- Detects bedroom elements
+- Suggests improvements
+- Estimated design cost
+- Product recommendations
 
 ---
 
 ## Project Structure
 
-```
 interior-ai/
-├── app.py                  # Flask backend + AI analysis logic
-├── requirements.txt        # Python dependencies
+
+├── app.py
+├── requirements.txt
+├── README.md
+
 ├── templates/
-│   └── index.html          # Full single-page UI
-├── static/
-│   ├── css/
-│   │   └── style.css       # Complete stylesheet
-│   ├── js/
-│   │   └── app.js          # Frontend logic
-│   └── uploads/            # Auto-created on first run
-└── README.md
-```
+│ └── index.html
 
----
+└── static/
+├── css/
+│ └── style.css
+├── js/
+│ └── app.js
+└── uploads/
 
-## Setup Instructions
-
-### Step 1 — Clone / navigate to the folder
-```bash
-cd interior-ai
-```
-
-### Step 2 — Create a virtual environment
-```bash
+## Create Virtual Environment
 python -m venv venv
-source venv/bin/activate        # macOS / Linux
-venv\Scripts\activate           # Windows
-```
+venv\Scripts\activate
 
-### Step 3 — Install dependencies
-```bash
+## Install Dependencies
 pip install -r requirements.txt
-```
 
-### Step 4 — Set your Anthropic API key
-```bash
-# macOS / Linux
-export ANTHROPIC_API_KEY="sk-ant-..."
-
-# Windows CMD
-set ANTHROPIC_API_KEY=sk-ant-...
-
-# Windows PowerShell
-$env:ANTHROPIC_API_KEY="sk-ant-..."
-```
-
-Get your key at: https://console.anthropic.com/
-
-### Step 5 — Run the application
-```bash
+## Run Application
 python app.py
-```
+## Open:
+http://localhost:5000
 
-Open your browser at: **http://localhost:5000**
 
----
+## Technologies Used
+Python
+Flask
+HTML
+CSS
+JavaScript
+Pollinations AI
 
-## Features
+## Future Improvements 🔥
+Kitchen interior design
+Living room design
+Dining room design
+Better image consistency
+3D bedroom visualization
+More realistic furniture placement
 
-| Feature | Details |
-|---|---|
-| Room Detection | Identifies bedroom, living room, kitchen, office, etc. |
-| Furniture Detection | Lists all detected furniture items |
-| Wall Colour Suggestion | Primary + accent with hex codes and reasoning |
-| Furniture Arrangement | 3+ actionable rearrangement tips |
-| Lighting Ideas | Ambient, task, and accent lighting suggestions |
-| Plants & Decor | Indoor plant recommendations with placement |
-| After Design Visual | Animated preview of redesigned room |
-| Budget Breakdown | Low / Medium / Premium tier with itemised costs |
-| Buy Products | Direct links to 10+ Indian brands |
+## Author
 
----
+Supriya S A
 
-## Partner Stores
-
-- **Asian Paints** — Wall paint
-- **Berger Paints** — Wall paint
-- **IKEA India** — Furniture
-- **Pepperfry** — Furniture & Rugs
-- **Urban Ladder** — Furniture
-- **Home Centre** — Home décor
-- **Havells** — Lighting
-- **Philips** — Lighting
-- **Ugaoo** — Indoor plants
-
----
-
-## Notes
-
-- Maximum upload size: 16 MB
-- Supported formats: JPG, PNG, WEBP
-- The "After" image is an AI-generated visual representation, not a photo-realistic render
-- All prices are estimates and vary by city and retailer
+AI Interior Design Assistant
