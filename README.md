@@ -83,3 +83,4 @@ Then in app.py, set `USE_LOCAL_FLUX = True` and install the model.
 - ✅ 3 budget tiers with Indian ₹ pricing
 - ✅ Product links (IKEA, Asian Paints, Philips, etc.)
 - ✅ Real-time regeneration preserving room structure
+
