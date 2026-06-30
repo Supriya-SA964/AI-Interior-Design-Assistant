@@ -1,2 +1,9 @@
-flask>=3.0.0
-werkzeug>=3.0.0
+flask
+werkzeug
+python-dotenv
+google-generativeai
+Pillow
+opencv-python-headless
+ultralytics
+requests
+numpy

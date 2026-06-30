@@ -1,364 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Interior Design Assistant</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interior Design Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 </head>
 <body>
-
 <div class="layout">
 
-  <!-- ========== LEFT SIDEBAR ========== -->
-  <aside class="sidebar">
-    <!-- Logo -->
-    <div class="sidebar-logo">
-      <div class="logo-icon">🏠</div>
-      <div class="logo-text">
-        <div class="logo-main">AI Interior</div>
-        <div class="logo-sub">Design Assistant</div>
-      </div>
-    </div>
-
-    <!-- Nav -->
-    <nav class="sidebar-nav">
-      <a class="nav-item active" id="nav-dashboard" href="#" onclick="showPage('dashboard',this)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Dashboard
-      </a>
-      <a class="nav-item" id="nav-upload" href="#" onclick="showPage('upload',this)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
-        Upload Image
-      </a>
-      <a class="nav-item" href="#" onclick="showPage('dashboard',this);scrollTo('design-section')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        Design Ideas
-      </a>
-      <a class="nav-item" href="#" onclick="showPage('dashboard',this);scrollTo('budget-section')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        Budget Estimation
-      </a>
-      <a class="nav-item" href="#" onclick="showPage('dashboard',this);scrollTo('products-section')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-        Product Links
-      </a>
-      <a class="nav-item" href="#">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
-        Saved Designs
-      </a>
-      <a class="nav-item" href="#">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        About Us
-      </a>
-      <a class="nav-item" href="#">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Contact
-      </a>
-    </nav>
-
-    <!-- Promo Box -->
-    <div class="sidebar-promo">
-      <div class="promo-content">
-        <p>Let AI design<br/>your dream<br/>space ✨</p>
-      </div>
-      <div class="promo-emojis">🛋️🪴</div>
-    </div>
-
-    <div class="sidebar-footer">© 2024 AI Interior Design<br/>Assistant. All rights reserved.</div>
-  </aside>
-
-  <!-- ========== MAIN AREA ========== -->
-  <div class="main">
-
-    <!-- TOP HEADER -->
-    <header class="topbar">
-      <div>
-        <h1 class="topbar-title">Welcome, Supriya! 👋</h1>
-        <p class="topbar-sub" id="topbar-sub">Upload a room image to get started</p>
-      </div>
-      <div class="topbar-right">
-        <button class="theme-btn" onclick="toggleTheme()">🌙 <span style="font-size:11px">▾</span></button>
-        <button class="new-design-btn" onclick="showPage('upload', document.getElementById('nav-upload'))">+ New Design</button>
-      </div>
-    </header>
-
-    <!-- ========== UPLOAD PAGE ========== -->
-    <div class="page" id="page-upload">
-      <div class="upload-wrap">
-        <h2 class="section-heading">Upload Room Image</h2>
-        <div class="dropzone" id="dropzone"
-          ondragover="event.preventDefault();this.classList.add('dragover')"
-          ondragleave="this.classList.remove('dragover')"
-          ondrop="handleDrop(event)">
-          <div id="drop-inner">
-            <div class="drop-icon">📷</div>
-            <p class="drop-title">Drag & drop your room photo here</p>
-            <p class="drop-sub">Supports JPG, PNG, WEBP — Max 16MB</p>
-            <label class="btn-browse" for="file-input">Choose File</label>
-            <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp" hidden onchange="handleFileInput(this)"/>
-          </div>
-          <div id="preview-wrap" style="display:none;text-align:center">
-            <img id="preview-img" src="" alt="preview" style="max-height:340px;max-width:100%;border-radius:10px;object-fit:contain"/>
-            <br/>
-            <button class="btn-remove" onclick="removeFile()">✕ Remove Image</button>
-          </div>
-        </div>
-        <!-- BUDGET SELECTOR -->
-        <div class="budget-selector">
-          <p class="budget-selector-label">Select Your Budget</p>
-          <div class="budget-selector-btns">
-            <button class="budget-select-btn" id="bsel-low" onclick="selectBudget('low')">
-              💚 Low Budget<br/><span>₹25,000 – ₹35,000</span>
-            </button>
-            <button class="budget-select-btn active-budget" id="bsel-medium" onclick="selectBudget('medium')">
-              💛 Medium Budget<br/><span>₹35,000 – ₹60,000</span>
-            </button>
-            <button class="budget-select-btn" id="bsel-high" onclick="selectBudget('high')">
-              💎 Premium Budget<br/><span>₹60,000+</span>
-            </button>
-          </div>
-        </div>
-        <button class="btn-analyse" id="btn-analyse" disabled onclick="runAnalysis()">
-          🔍 Analyse My Room
-        </button>
-      </div>
-    </div>
-
-    <!-- ========== DASHBOARD PAGE ========== -->
-    <div class="page" id="page-dashboard" style="display:none">
-
-      <div id="budget-tier-badge">&#128155; Medium Budget</div>
-
-      <!-- DASHBOARD BUDGET SWITCHER -->
-      <div class="dash-budget-bar">
-        <span class="dash-budget-label">Switch Budget &amp; Regenerate:</span>
-        <button class="dash-budget-btn" id="dbtn-low" onclick="switchDashboardBudget('low')">&#128154; Low Budget</button>
-        <button class="dash-budget-btn active-dash-budget" id="dbtn-medium" onclick="switchDashboardBudget('medium')">&#128155; Medium Budget</button>
-        <button class="dash-budget-btn" id="dbtn-high" onclick="switchDashboardBudget('high')">&#128142; Premium Budget</button>
-      </div>
-
-      <!-- ROW 1: Before & After + Detected Items -->
-      <div class="row1">
-
-        <!-- Before & After -->
-        <div class="card ba-card">
-          <h2 class="section-heading">Before &amp; After Design</h2>
-          <div class="ba-images">
-            <div class="ba-img-box">
-              <span class="badge badge-before">Before</span>
-              <img id="before-img" src="" alt="Before"/>
-            </div>
-            <button class="ba-arrow-btn" onclick="toggleSlide()">
-              <span>&#8249;</span><span>&#8250;</span>
-            </button>
-            <div class="ba-img-box">
-              <span class="badge badge-after">After (AI Design)</span>
-              <!-- Real AI generated image from Pollinations -->
-              <div id="after-img-container" style="display:none;width:100%;height:280px;">
-                <img id="after-img" src="" alt="AI Redesigned Room" style="width:100%;height:280px;object-fit:cover;display:block;"/>
-              </div>
-              <!-- Fallback visual -->
-              <div class="after-ai-visual" id="after-visual">
-                <div class="av-bg" id="av-bg"></div>
-                <div class="av-ceiling">
-                  <div class="av-cove-light"></div>
-                </div>
-                <div class="av-room-content">
-                  <div class="av-art">🖼️ &nbsp; 🖼️</div>
-                  <div class="av-bed-group">
-                    <div class="av-bed" id="av-bed"></div>
-                    <div class="av-lamp-left">🕯️</div>
-                    <div class="av-lamp-right">🕯️</div>
-                  </div>
-                  <div class="av-floor-items">
-                    <div class="av-plant">🪴</div>
-                    <div class="av-rug" id="av-rug"></div>
-                    <div class="av-desk">🪑</div>
-                  </div>
-                </div>
-                <div class="av-curtain-left" id="av-curtain"></div>
-                <div class="av-curtain-right" id="av-curtain2"></div>
-              </div>
-            </div>
-          </div>
-          <p class="ba-note">✨ AI-generated design is for inspiration purpose only.</p>
-        </div>
-
-        <!-- Detected Items -->
-        <div class="card detected-card">
-          <h2 class="section-heading">Detected Items</h2>
-          <div class="detected-list" id="detected-list"></div>
-          <button class="btn-view-all" onclick="alert('All detected items listed above!')">View All Items</button>
-        </div>
-
-      </div>
-
-      <!-- ROW 2: Design Suggestions + Budget Estimation + Budget Options -->
-      <div class="row2" id="design-section">
-
-        <!-- Design Suggestions -->
-        <div class="card suggestions-card">
-          <h2 class="section-heading">Design Suggestions</h2>
-          <div class="suggestions-list" id="suggestions-list"></div>
-        </div>
-
-        <!-- Budget Estimation -->
-        <div class="card budget-card" id="budget-section">
-          <h2 class="section-heading">Budget Estimation</h2>
-          <table class="budget-table">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Estimated Cost (₹)</th>
-              </tr>
-            </thead>
-            <tbody id="budget-tbody"></tbody>
-            <tfoot>
-              <tr class="budget-total-row">
-                <td>Total Estimated Cost</td>
-                <td id="budget-total">₹ 42,500</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-
-        <!-- Budget Options -->
-        <div class="card budget-options-card">
-          <h2 class="section-heading">Budget Options</h2>
-          <div class="budget-option-item green-option">
-            <div class="bo-icon-wrap green-icon">🏷️</div>
-            <div class="bo-text">
-              <div class="bo-title green-title">Low Budget</div>
-              <div class="bo-desc">Basic &amp; Affordable Design</div>
-            </div>
-            <div class="bo-range" id="bo-low">₹ 25,000 – ₹ 35,000</div>
-          </div>
-          <div class="budget-option-item yellow-option">
-            <div class="bo-icon-wrap yellow-icon">⭐</div>
-            <div class="bo-text">
-              <div class="bo-title yellow-title">Medium Budget</div>
-              <div class="bo-desc">Comfort &amp; Style</div>
-            </div>
-            <div class="bo-range" id="bo-mid">₹ 35,000 – ₹ 60,000</div>
-          </div>
-          <div class="budget-option-item purple-option">
-            <div class="bo-icon-wrap purple-icon">👑</div>
-            <div class="bo-text">
-              <div class="bo-title purple-title">Premium Budget</div>
-              <div class="bo-desc">Luxury &amp; Premium Design</div>
-            </div>
-            <div class="bo-range" id="bo-premium">₹ 60,000+</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ROW 3: Buy Products -->
-      <div class="card products-card" id="products-section">
-        <h2 class="section-heading">Buy Products 🛒 (Recommended)</h2>
-        <div class="products-grid">
-
-          <div class="product-col">
-            <div class="product-col-title">Wall Paints</div>
-            <div class="brand-row">
-              <a href="https://www.asianpaints.com/colour-catalogue.html" target="_blank" class="brand-item">
-                <div class="brand-logo-box ap">
-                  <span class="ap-logo-text"><span style="color:#e63312">ap</span> asian<span style="color:#e63312">paints</span></span>
-                </div>
-              </a>
-              <a href="https://www.bergerpaints.com/colourbank" target="_blank" class="brand-item">
-                <div class="brand-logo-box berger">
-                  <span class="berger-logo-text"><span style="color:#e63312">B</span>erger</span>
-                </div>
-              </a>
-            </div>
-            <a href="https://www.asianpaints.com/colour-catalogue.html" target="_blank" class="view-link">View Paints →</a>
-          </div>
-
-          <div class="product-col">
-            <div class="product-col-title">Furniture</div>
-            <div class="brand-row">
-              <a href="https://www.ikea.com/in/en/" target="_blank" class="brand-item">
-                <div class="brand-logo-box ikea">
-                  <span class="ikea-text">IKEA</span>
-                </div>
-              </a>
-              <a href="https://www.pepperfry.com/" target="_blank" class="brand-item">
-                <div class="brand-logo-box pepperfry">
-                  <span class="pepperfry-text">pepperfry</span>
-                </div>
-              </a>
-              <a href="https://www.urbanladder.com/" target="_blank" class="brand-item">
-                <div class="brand-logo-box urbanladder">
-                  <span class="ul-text">🪜 Urban Ladder</span>
-                </div>
-              </a>
-            </div>
-            <a href="https://www.pepperfry.com/" target="_blank" class="view-link">View Furniture →</a>
-          </div>
-
-          <div class="product-col">
-            <div class="product-col-title">Lighting</div>
-            <div class="brand-row">
-              <a href="https://www.lighting.philips.co.in/consumer" target="_blank" class="brand-item">
-                <div class="brand-logo-box philips">
-                  <span class="philips-text">PHILIPS</span>
-                </div>
-              </a>
-              <a href="https://www.havells.com/en/consumer/lighting.html" target="_blank" class="brand-item">
-                <div class="brand-logo-box havells">
-                  <span class="havells-text">🔴 HAVELLS</span>
-                </div>
-              </a>
-            </div>
-            <a href="https://www.havells.com/en/consumer/lighting.html" target="_blank" class="view-link">View Lighting →</a>
-          </div>
-
-          <div class="product-col">
-            <div class="product-col-title">Decor &amp; More</div>
-            <div class="brand-row">
-              <a href="https://www.homecentre.com/in/en/" target="_blank" class="brand-item">
-                <div class="brand-logo-box homecentre">
-                  <span class="hc-text">homecentre</span>
-                </div>
-              </a>
-              <a href="https://www.ddecor.com/" target="_blank" class="brand-item">
-                <div class="brand-logo-box ddecor">
-                  <span class="ddecor-text">D'Decor</span>
-                </div>
-              </a>
-            </div>
-            <a href="https://www.homecentre.com/in/en/" target="_blank" class="view-link">View Decor →</a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-    <!-- end page-dashboard -->
-
-    <!-- LOADING OVERLAY -->
-    <div class="loading-overlay" id="loading-overlay" style="display:none">
-      <div class="loading-box">
-        <div class="spinner"></div>
-        <h3>Analysing your room…</h3>
-        <p id="loading-msg">Please wait</p>
-        <div class="loading-steps">
-          <div class="lstep" id="ls1">🔍 Detecting furniture</div>
-          <div class="lstep" id="ls2">🎨 Selecting colour palette</div>
-          <div class="lstep" id="ls3">💡 Planning lighting</div>
-          <div class="lstep" id="ls4">💰 Estimating budget</div>
-        </div>
-      </div>
-    </div>
-
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🏠</div>
+    <div><div class="logo-main">AI Interior</div><div class="logo-sub">Design Assistant</div></div>
   </div>
-  <!-- end main -->
-</div>
-<!-- end layout -->
+  <nav class="sidebar-nav">
+    <!-- FIX: All nav items now call showPage with correct IDs -->
+    <a class="nav-item active" id="nav-dashboard" href="#" onclick="showPage('dashboard',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard
+    </a>
+    <a class="nav-item" id="nav-upload" href="#" onclick="showPage('upload',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>Upload Image
+    </a>
+    <a class="nav-item" id="nav-design-ideas" href="#" onclick="showPage('design-ideas',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>Design Ideas
+    </a>
+    <a class="nav-item" id="nav-budget" href="#" onclick="showPage('budget',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Budget Estimation
+    </a>
+    <a class="nav-item" id="nav-products" href="#" onclick="showPage('products',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Product Links
+    </a>
+    <a class="nav-item" id="nav-saved" href="#" onclick="showPage('saved',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>Saved Designs
+    </a>
+    <a class="nav-item" id="nav-about" href="#" onclick="showPage('about',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>About Us
+    </a>
+    <a class="nav-item" id="nav-contact" href="#" onclick="showPage('contact',this);return false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact
+    </a>
+  </nav>
+  <div class="sidebar-promo">
+    <p>Let AI design<br/>your dream<br/>space ✨</p>
+    <div class="promo-emojis">🛋️🪴</div>
+  </div>
+  <div class="sidebar-footer">© 2024 AI Interior Design<br/>Assistant. All rights reserved.</div>
+</aside>
 
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div>
+      <h1 class="topbar-title">Welcome, Supriya! 👋</h1>
+      <p class="topbar-sub" id="topbar-sub">Upload a room image to get started</p>
+    </div>
+    <div class="topbar-right">
+      <button class="new-design-btn" onclick="newDesign()">+ New Design</button>
+    </div>
+  </header>
+
+  <!-- ══ UPLOAD PAGE ══ -->
+  <div class="page" id="page-upload">
+    <div class="upload-wrap">
+      <h2 class="section-heading">Upload Room Image</h2>
+      <div class="dropzone" id="dropzone"
+        ondragover="event.preventDefault();this.classList.add('dragover')"
+        ondragleave="this.classList.remove('dragover')"
+        ondrop="handleDrop(event)">
+        <div id="drop-inner">
+          <div class="drop-icon">📷</div>
+          <p class="drop-title">Drag &amp; drop your room photo here</p>
+          <p class="drop-sub">Supports JPG, PNG, WEBP — Max 32MB</p>
+          <label class="btn-browse" for="file-input">Choose File</label>
+          <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp" hidden onchange="handleFileInput(this)"/>
+        </div>
+        <div id="preview-wrap" style="display:none;text-align:center">
+          <img id="preview-img" src="" alt="preview" style="max-height:300px;max-width:100%;border-radius:10px;object-fit:contain"/>
+          <br/><button class="btn-remove" onclick="removeFile()">✕ Remove</button>
+        </div>
+      </div>
+
+      <!-- Room Type -->
+      <div class="selector-block">
+        <p class="selector-label">Room Type</p>
+        <div class="room-type-grid">
+          <button class="rt-btn active-rt" id="rt-bedroom"  onclick="selectRoomType('bedroom')"> 🛏️<br/>Bedroom</button>
+          <button class="rt-btn" id="rt-living"   onclick="selectRoomType('living')">  🛋️<br/>Living Room</button>
+          <button class="rt-btn" id="rt-kitchen"  onclick="selectRoomType('kitchen')"> 🍳<br/>Kitchen</button>
+          <button class="rt-btn" id="rt-dining"   onclick="selectRoomType('dining')">  🍽️<br/>Dining Hall</button>
+          <button class="rt-btn" id="rt-office"   onclick="selectRoomType('office')">  💼<br/>Office</button>
+          <button class="rt-btn" id="rt-bathroom" onclick="selectRoomType('bathroom')">🚿<br/>Bathroom</button>
+        </div>
+      </div>
+
+      <!-- Budget -->
+      <div class="selector-block">
+        <p class="selector-label">Budget</p>
+        <div class="budget-grid">
+          <button class="budget-btn" id="bsel-low"     onclick="selectBudget('low')">💚 Low<br/><small>₹25K–₹35K</small></button>
+          <button class="budget-btn active-budget" id="bsel-medium"  onclick="selectBudget('medium')">💛 Medium<br/><small>₹35K–₹60K</small></button>
+          <button class="budget-btn" id="bsel-premium" onclick="selectBudget('premium')">💎 Premium<br/><small>₹60K+</small></button>
+        </div>
+      </div>
+
+      <button class="btn-analyse" id="btn-analyse" disabled onclick="runAnalysis()">✨ Analyse &amp; Redesign My Room</button>
+    </div>
+  </div>
+
+  <!-- ══ DASHBOARD PAGE ══ -->
+  <div class="page" id="page-dashboard" style="display:none">
+
+    <!-- Budget switcher bar -->
+    <div class="dash-budget-bar">
+      <span class="dash-budget-label">Switch Budget:</span>
+      <button class="dash-budget-btn" id="dbtn-low"     onclick="switchBudget('low')">💚 Low Budget</button>
+      <button class="dash-budget-btn active-dash" id="dbtn-medium"  onclick="switchBudget('medium')">💛 Medium Budget</button>
+      <button class="dash-budget-btn" id="dbtn-premium" onclick="switchBudget('premium')">💎 Premium Budget</button>
+    </div>
+
+    <!-- ── ROW 1: Before/After + Detected ── -->
+    <div class="row1">
+      <div class="card ba-card">
+        <h2 class="section-heading">Before &amp; After Design</h2>
+        <div class="ba-images">
+          <div class="ba-img-box">
+            <span class="badge badge-before">Before</span>
+            <img id="before-img" src="" alt="Before" class="ba-img"/>
+          </div>
+          <button class="ba-arrow-btn" onclick="toggleCompare()">&#8249;&#8250;</button>
+          <div class="ba-img-box after-box">
+            <span class="badge badge-after">After (AI Design)</span>
+            <div id="after-loading" class="after-loading">
+              <div class="mini-spin"></div>
+              <p>FLUX.1 generating…</p>
+              <p class="after-hint">May take 30–90 seconds</p>
+            </div>
+            <img id="after-img" src="" alt="AI Design" class="ba-img" style="display:none"/>
+            <div id="after-error" class="after-error" style="display:none">
+              <p>⚠️ Couldn't load image</p>
+              <button onclick="retryImage()">↺ Retry</button>
+            </div>
+          </div>
+        </div>
+        <p class="ba-note" id="obs-note">✨ AI-generated design is for inspiration purpose only.</p>
+      </div>
+
+      <!-- Detected Items -->
+      <div class="card detected-card">
+        <h2 class="section-heading">Detected Items</h2>
+        <div id="detected-list"></div>
+        <div class="room-badge-row">
+          <span class="room-badge" id="room-badge">🏠 Room</span>
+          <span class="budget-badge" id="budget-badge">💛 Medium</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ROW 2: Suggestions + Budget Table + Budget Options ── -->
+    <div class="row2">
+      <div class="card">
+        <h2 class="section-heading">Design Suggestions</h2>
+        <div id="suggestions-list"></div>
+      </div>
+      <div class="card">
+        <h2 class="section-heading">Budget Estimation</h2>
+        <table class="budget-table">
+          <thead><tr><th>Item</th><th>Estimated Cost (₹)</th></tr></thead>
+          <tbody id="budget-tbody"></tbody>
+          <tfoot><tr class="total-row"><td>Total Estimated Cost</td><td id="budget-total">₹ 0</td></tr></tfoot>
+        </table>
+      </div>
+      <div class="card">
+        <h2 class="section-heading">Budget Options</h2>
+        <div class="bo-item"><div class="bo-icon green-bg">🏷️</div><div class="bo-text"><div class="bo-title green">Low Budget</div><div class="bo-desc">Basic &amp; Affordable</div></div><div class="bo-range" id="bo-low">₹25K–₹35K</div></div>
+        <div class="bo-item"><div class="bo-icon yellow-bg">⭐</div><div class="bo-text"><div class="bo-title yellow">Medium Budget</div><div class="bo-desc">Comfort &amp; Style</div></div><div class="bo-range" id="bo-mid">₹35K–₹60K</div></div>
+        <div class="bo-item"><div class="bo-icon purple-bg">👑</div><div class="bo-text"><div class="bo-title purple">Premium Budget</div><div class="bo-desc">Luxury Design</div></div><div class="bo-range" id="bo-prem">₹60K+</div></div>
+      </div>
+    </div>
+
+    <!-- ── EDITOR PANEL ── -->
+    <div class="card editor-card">
+      <h2 class="section-heading">🎨 Live Design Editor <span class="editor-sub">— click any option to regenerate</span></h2>
+      <div class="editor-grid">
+        <!-- Wall Colors -->
+        <div class="editor-panel">
+          <h4 class="panel-title">🎨 Wall Color</h4>
+          <div class="color-grid">
+            <button class="color-btn" onclick="applyEdit('wall_color','White')">    <span class="swatch" style="background:#fff;border:1px solid #ddd"></span>White</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Blue')">     <span class="swatch" style="background:#4A90D9"></span>Blue</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Green')">    <span class="swatch" style="background:#5A8A6A"></span>Green</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Grey')">     <span class="swatch" style="background:#8A8A8A"></span>Grey</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Black')">    <span class="swatch" style="background:#222"></span>Black</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Beige')">    <span class="swatch" style="background:#F5E6D0"></span>Beige</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Brown')">    <span class="swatch" style="background:#8B5E3C"></span>Brown</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Yellow')">   <span class="swatch" style="background:#F5C842"></span>Yellow</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Pink')">     <span class="swatch" style="background:#E88FA0"></span>Pink</button>
+            <button class="color-btn" onclick="applyEdit('wall_color','Purple')">   <span class="swatch" style="background:#7B5EA7"></span>Purple</button>
+          </div>
+        </div>
+        <!-- Furniture -->
+        <div class="editor-panel">
+          <h4 class="panel-title">🛋️ Furniture</h4>
+          <div class="opt-grid">
+            <button class="opt-btn" onclick="applyEdit('furniture','Sofa')">🛋️ Sofa</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Bed')">🛏️ Bed</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Dining Table')">🪑 Dining Table</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','TV Unit')">📺 TV Unit</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Study Table')">📋 Study Table</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Office Chair')">💺 Office Chair</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Wardrobe')">🗄️ Wardrobe</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Coffee Table')">☕ Coffee Table</button>
+            <button class="opt-btn" onclick="applyEdit('furniture','Bookshelf')">📚 Bookshelf</button>
+          </div>
+        </div>
+        <!-- Lighting -->
+        <div class="editor-panel">
+          <h4 class="panel-title">💡 Lighting</h4>
+          <div class="opt-grid">
+            <button class="opt-btn" onclick="applyEdit('lighting','Warm')">🟡 Warm</button>
+            <button class="opt-btn" onclick="applyEdit('lighting','Cool')">🔵 Cool</button>
+            <button class="opt-btn" onclick="applyEdit('lighting','Natural')">☀️ Natural</button>
+            <button class="opt-btn" onclick="applyEdit('lighting','Ambient')">🌙 Ambient</button>
+            <button class="opt-btn" onclick="applyEdit('lighting','Luxury')">✨ Luxury</button>
+          </div>
+        </div>
+        <!-- Curtains -->
+        <div class="editor-panel">
+          <h4 class="panel-title">🪟 Curtains</h4>
+          <div class="opt-grid">
+            <button class="opt-btn" onclick="applyEdit('curtains','White Sheer')">🤍 White Sheer</button>
+            <button class="opt-btn" onclick="applyEdit('curtains','Beige Linen')">🟤 Beige Linen</button>
+            <button class="opt-btn" onclick="applyEdit('curtains','Grey Velvet')">🩶 Grey Velvet</button>
+            <button class="opt-btn" onclick="applyEdit('curtains','Navy Blue')">🔵 Navy Blue</button>
+            <button class="opt-btn" onclick="applyEdit('curtains','Blackout')">⬛ Blackout</button>
+            <button class="opt-btn" onclick="applyEdit('curtains','Floral Print')">🌸 Floral</button>
+          </div>
+        </div>
+        <!-- Flooring -->
+        <div class="editor-panel">
+          <h4 class="panel-title">🏠 Flooring</h4>
+          <div class="opt-grid">
+            <button class="opt-btn" onclick="applyEdit('flooring','Marble')">⬜ Marble</button>
+            <button class="opt-btn" onclick="applyEdit('flooring','Wooden')">🟫 Wooden</button>
+            <button class="opt-btn" onclick="applyEdit('flooring','Tiles')">🔲 Tiles</button>
+            <button class="opt-btn" onclick="applyEdit('flooring','Vinyl')">🟩 Vinyl</button>
+            <button class="opt-btn" onclick="applyEdit('flooring','Granite')">⬛ Granite</button>
+          </div>
+        </div>
+        <!-- Decorations -->
+        <div class="editor-panel">
+          <h4 class="panel-title">🌿 Decorations</h4>
+          <div class="opt-grid">
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Indoor Plants')">🪴 Plants</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Paintings')">🖼️ Paintings</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Mirrors')">🪞 Mirrors</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Carpets')">🟫 Carpets</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Rugs')">🟤 Rugs</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Wall Art')">🎨 Wall Art</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Decorative Lamps')">🕯️ Lamps</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Shelves')">📦 Shelves</button>
+            <button class="opt-btn decor-btn" onclick="toggleDecor(this,'Clocks')">🕐 Clocks</button>
+          </div>
+          <button class="apply-decor-btn" onclick="applyDecorations()">Apply Decorations ✓</button>
+        </div>
+        <!-- Themes -->
+        <div class="editor-panel">
+          <h4 class="panel-title">🏛️ Interior Theme</h4>
+          <div class="opt-grid">
+            <button class="opt-btn" onclick="applyEdit('theme','Modern')">🏙️ Modern</button>
+            <button class="opt-btn" onclick="applyEdit('theme','Minimalist')">⬜ Minimalist</button>
+            <button class="opt-btn" onclick="applyEdit('theme','Luxury')">👑 Luxury</button>
+            <button class="opt-btn" onclick="applyEdit('theme','Scandinavian')">❄️ Scandinavian</button>
+            <button class="opt-btn" onclick="applyEdit('theme','Traditional')">🏮 Traditional</button>
+            <button class="opt-btn" onclick="applyEdit('theme','Industrial')">⚙️ Industrial</button>
+            <button class="opt-btn" onclick="applyEdit('theme','Bohemian')">🌺 Bohemian</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current design state -->
+      <div class="state-bar">
+        <span class="state-label">Current Design:</span>
+        <div id="state-chips"></div>
+        <button class="reset-btn" onclick="resetDesign()">↺ Reset</button>
+      </div>
+    </div>
+
+    <!-- ── Buy Products ── -->
+    <div class="card products-card">
+      <h2 class="section-heading">Buy Products 🛒 (Recommended)</h2>
+      <div class="products-grid" id="products-grid"></div>
+    </div>
+
+  </div><!-- end page-dashboard -->
+
+  <!-- ══ DESIGN IDEAS PAGE ══ -->
+  <div class="page" id="page-design-ideas" style="display:none">
+    <div id="design-ideas-content"></div>
+  </div>
+
+  <!-- ══ BUDGET PAGE ══ -->
+  <div class="page" id="page-budget" style="display:none">
+    <div id="budget-page-content"></div>
+  </div>
+
+  <!-- ══ PRODUCTS PAGE ══ -->
+  <div class="page" id="page-products" style="display:none">
+    <div id="products-page-content"></div>
+  </div>
+
+  <!-- ══ SAVED DESIGNS PAGE ══ -->
+  <div class="page" id="page-saved" style="display:none">
+    <div id="saved-page-content"></div>
+  </div>
+
+  <!-- ══ ABOUT PAGE ══ -->
+  <div class="page" id="page-about" style="display:none">
+    <div id="about-page-content"></div>
+  </div>
+
+  <!-- ══ CONTACT PAGE ══ -->
+  <div class="page" id="page-contact" style="display:none">
+    <div id="contact-page-content"></div>
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" id="loading-overlay" style="display:none">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <h3>Analysing your room…</h3>
+      <p id="loading-msg">Please wait</p>
+      <div class="loading-steps">
+        <div class="lstep" id="ls1">🔍 YOLOv8 detecting furniture</div>
+        <div class="lstep" id="ls2">🧠 Gemini analysing room</div>
+        <div class="lstep" id="ls3">🎨 Building design prompt</div>
+        <div class="lstep" id="ls4">🖼️ FLUX.1 generating image</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end main -->
+</div><!-- end layout -->
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
-</html>
+</html>  

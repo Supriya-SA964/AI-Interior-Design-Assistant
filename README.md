@@ -1,100 +1,85 @@
-# RoomAI — AI Interior Design Assistant 🛏️✨
+# 🏛️ DesignAI Studio
 
-An AI-powered bedroom interior design web application that transforms empty bedroom images into modern interior designs.
+AI Interior Design platform powered by **FLUX.1** (via Pollinations) + **Google Gemini** + **YOLOv8**.
 
-Users can upload an empty bedroom image and generate AI-based bedroom designs with furniture, wall colors, lighting, and decoration suggestions.
+## Folder Structure
 
-## Features 🚀
+```
+interior-ai/
+├── app.py                    ← Flask backend
+├── requirements.txt          ← Python dependencies
+├── .env                      ← Your API keys (create this)
+├── .env.example              ← Template for .env
+├── README.md
+├── templates/
+│   └── index.html            ← Full UI
+└── static/
+    ├── css/
+    │   └── style.css         ← All styles
+    ├── js/
+    │   └── app.js            ← All frontend logic
+    └── uploads/              ← Auto-created on first run
+```
 
-### 🛏️ AI Bedroom Design
-- Upload empty bedroom image
-- Generate AI-designed bedroom preview
-- Transform empty room into a furnished bedroom
+## Setup
 
-### 🎨 Interior Suggestions
-AI provides:
-- Bed design ideas
-- Wardrobe suggestions
-- Side table placement
-- Lamp and lighting ideas
-- Curtain suggestions
-- Wall paint colors
-- Bedroom decoration concepts
+### 1. Create virtual environment
+```bash
+python -m venv venv
 
-### 💰 Budget Options
+# Windows
+venv\Scripts\activate
 
-**Low Budget**
-- Simple furniture
-- Affordable materials
-- Minimal decoration
+# Mac/Linux
+source venv/bin/activate
+```
 
-**Medium Budget**
-- Modern bedroom style
-- Better furniture
-- Stylish interior design
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
-**Premium Budget**
-- Luxury bedroom design
-- Premium furniture
-- High-end decoration
+### 3. Create .env file
+```
+GEMINI_API_KEY=your_key_here
+```
+Get free key: https://aistudio.google.com/app/apikey
 
-### 📊 Bedroom Analysis
-- Detects bedroom elements
-- Suggests improvements
-- Estimated design cost
-- Product recommendations
+### 4. Run
+```bash
+python app.py
+```
+Open: http://localhost:5000
 
 ---
 
-## Project Structure
+## Image Generation — FLUX.1
 
-interior-ai/
+This app uses **Pollinations.ai** which runs **FLUX.1 Dev** as its backend model.
+- **Completely free**, no API key needed
+- Generates 1024×768 photorealistic images
+- URL: `https://image.pollinations.ai/prompt/...?model=flux`
 
-- ├── app.py
-- ├── requirements.txt
-- ├── README.md
+### Optional: Run FLUX.1 Locally
+For full local FLUX.1 Dev, you need 16GB+ VRAM GPU:
+```bash
+pip install diffusers torch transformers accelerate
+```
+Then in app.py, set `USE_LOCAL_FLUX = True` and install the model.
 
-- ├── templates/
-- └── index.html
+---
 
-- └── static/
-- ├── css/
-- │ └── style.css
-- ├── js/
-- │ └── app.js
-- └── uploads/
-
-## Create Virtual Environment
-- python -m venv venv
-- venv\Scripts\activate
-
-## Install Dependencies
-- pip install -r requirements.txt
-
-## Run Application
-- python app.py
-## Open:
-- http://localhost:5000
-
-
-## Technologies Used
-- Python
-- Flask
-- HTML
-- CSS
-- JavaScript
-- Pollinations AI
-
-## Future Improvements 🔥
-- Kitchen interior design
-- Living room design
-- Dining room design
-- Better image consistency
-- 3D bedroom visualization
-- More realistic furniture placement
-
-## Author
-
-Supriya S A
-
-AI Interior Design Assistant
+## Features
+- ✅ YOLOv8 furniture detection
+- ✅ Gemini AI room analysis
+- ✅ FLUX.1 image generation
+- ✅ 10 wall color options
+- ✅ 9 furniture options
+- ✅ 5 lighting options
+- ✅ 6 curtain styles
+- ✅ 5 flooring types
+- ✅ 9 decoration items
+- ✅ 7 interior themes
+- ✅ 3 budget tiers with Indian ₹ pricing
+- ✅ Product links (IKEA, Asian Paints, Philips, etc.)
+- ✅ Real-time regeneration preserving room structure
